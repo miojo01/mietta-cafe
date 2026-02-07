@@ -6,35 +6,35 @@ import { Sparkles, Coffee, Sun, CloudRain, BatteryCharging, Heart } from 'lucide
 import { products } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 
-// Mapeando emoções para IDs de produtos (Baseado na nossa lista products.ts)
+// Mapeando emoções para IDs de produtos
 const moods = [
   { 
     id: 'tired', 
     label: 'Preciso Acordar', 
     icon: BatteryCharging, 
     color: 'bg-yellow-100 text-yellow-700',
-    matchId: 6 // Espresso Tônica (ou o café mais forte que tiver)
+    matchId: 6 
   },
   { 
     id: 'cozy', 
     label: 'Quero um Abraço', 
     icon: CloudRain, 
     color: 'bg-blue-100 text-blue-700',
-    matchId: 1 // Cappuccino
+    matchId: 1 
   },
   { 
     id: 'sweet', 
     label: 'Formiga de Doce', 
     icon: Heart, 
     color: 'bg-pink-100 text-pink-700',
-    matchId: 3 // Red Velvet
+    matchId: 3 
   },
   { 
     id: 'hot', 
     label: 'Refrescar', 
     icon: Sun, 
     color: 'bg-orange-100 text-orange-700',
-    matchId: 6 // Espresso Tônica
+    matchId: 6 
   },
 ];
 
@@ -87,7 +87,7 @@ export default function MoodMatcher() {
           })}
         </div>
 
-        {/* Área da Recomendação (Aparece suavemente) */}
+        {/* Área da Recomendação */}
         <AnimatePresence mode='wait'>
           {recommendation && (
             <motion.div
@@ -119,11 +119,16 @@ export default function MoodMatcher() {
                 </p>
                 
                 <button 
-                  onClick={() => addToCart(recommendation)}
+                  // AQUI ESTAVA O ERRO -> CORRIGIDO:
+                  onClick={() => addToCart({
+                    ...recommendation,
+                    id: recommendation.id.toString(), // Converte ID numérico para String
+                    quantity: 1 // Adiciona a quantidade obrigatória
+                  })}
                   className="px-8 py-3 bg-mietta-clay text-mietta-cream rounded-xl font-bold hover:bg-mietta-clay/90 transition-transform hover:scale-105 flex items-center gap-2"
                 >
                   <Coffee size={20} />
-                  Pedir essa Sugestão (R$ {recommendation.price.toFixed(2)})
+                  Pedir essa Sugestão
                 </button>
               </div>
             </motion.div>

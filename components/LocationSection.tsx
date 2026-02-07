@@ -34,7 +34,7 @@ export default function LocationSection() {
             <div className="flex-1 relative min-h-[300px] lg:min-h-full rounded-[2.5rem] overflow-hidden">
                  
                  <iframe 
-                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3556.326233869274!2d-50.3924!3d-26.1775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDEwJzM5LjAiUyA1MMKwMjMnMzIuNiJX!5e0!3m2!1spt-BR!2sbr!4v1600000000000!5m2!1spt-BR!2sbr" 
+                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1064.5366019225517!2d-50.39434321403857!3d-26.175198663172186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e713439a51730f%3A0xaa44f5efedc92544!2sMietta%20Caf%C3%A9!5e0!3m2!1spt-BR!2sbr!4v1770491699695!5m2!1spt-BR!2sbr" 
                    width="100%" 
                    height="100%" 
                    style={{ border: 0, minHeight: '400px' }} 
@@ -96,7 +96,7 @@ export default function LocationSection() {
                       Ambiente climatizado e pet friendly.
                     </p>
                     <a 
-                      href="https://www.google.com/maps/search/?api=1&query=Rua+Senador+Felipe+Schmidt+130+Canoinhas+SC" 
+                      href="https://www.google.com/maps/place/Mietta+Caf%C3%A9/@-26.1751987,-50.3943432,19z/data=!4m6!3m5!1s0x94e713439a51730f:0xaa44f5efedc92544!8m2!3d-26.175297!4d-50.3938281!16s%2Fg%2F11thng0n74?entry=ttu&g_ep=EgoyMDI2MDIwNC4wIKXMDSoASAFQAw%3D%3D" 
                       target="_blank"
                       className="inline-flex items-center gap-2 bg-mietta-accent text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-white hover:text-mietta-accent transition-colors shadow-lg"
                     >

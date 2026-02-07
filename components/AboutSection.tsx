@@ -113,7 +113,7 @@ export default function AboutSection() {
                 <p className="text-sm text-mietta-clay/60 font-medium">Acompanhe nosso dia a dia</p>
                 
                 <a 
-                  href="https://instagram.com" 
+                  href="https://www.instagram.com/miettacafe/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 bg-gradient-to-tr from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"

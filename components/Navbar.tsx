@@ -17,6 +17,7 @@ export default function Navbar() {
     { name: 'Menu', href: '#menu' },
     { name: 'Nossa História', href: '#historia' },
     { name: 'Localização', href: '#localizacao' },
+    { name: 'Avaliações', href: '#avaliacoes' },
   ];
 
   return (

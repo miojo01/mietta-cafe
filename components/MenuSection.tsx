@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { products, Product } from '@/data/products';
@@ -12,7 +13,6 @@ const categories = [
   { id: 'salgados', label: 'Salgados' },
 ];
 
-// Configuração: Mantive as cores SÓ NO ÍCONE, removi o fundo colorido.
 const moods = [
   { 
     id: 'tired', 
@@ -60,7 +60,7 @@ export default function MenuSection() {
   const handleMoodSelect = (moodId: string) => {
     const selectedMood = moods.find(m => m.id === moodId);
     if (selectedMood) {
-      const product = products.find(p => p.id === selectedMood.recommendId);
+      const product = products.find(p => p.id === selectedMood.recommendId); 
       setRecommendation({ product, msg: selectedMood.msg });
       setTimeout(() => {
         const element = document.getElementById(`product-${selectedMood.recommendId}`);
@@ -102,11 +102,9 @@ export default function MenuSection() {
                   active:scale-95 active:shadow-inner
                 `}
               >
-                {/* Ícone colorido */}
                 <span className={`${mood.colorClass} transition-transform group-hover:rotate-12`}>
                   {mood.icon}
                 </span>
-                
                 <span className="font-medium text-mietta-clay">{mood.label}</span>
               </button>
             ))}
@@ -129,7 +127,7 @@ export default function MenuSection() {
           </AnimatePresence>
         </div>
 
-        {/* Filtros Normais */}
+        {/* Filtros */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((cat) => (
             <button
@@ -189,11 +187,16 @@ export default function MenuSection() {
                   </p>
 
                   <button 
-                    onClick={() => addToCart(product)}
+                    // CORREÇÃO AQUI: Convertendo id para String e adicionando quantity
+                    onClick={() => addToCart({ 
+                      ...product, 
+                      id: product.id.toString(), // Converte número para texto
+                      quantity: 1 
+                    })}
                     className="w-full py-3 bg-white border border-mietta-clay/20 text-mietta-clay rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-mietta-clay hover:text-mietta-cream transition-colors group-hover:border-mietta-clay mt-auto"
                   >
                     <Plus size={20} />
-                    Adicionar à Lista de Desejos
+                    Adicionar à Lista
                   </button>
                 </div>
               </motion.div>

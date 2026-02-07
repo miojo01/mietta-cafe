@@ -18,6 +18,11 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Mietta Café",
   description: "Café e Aconchego",
+  icons: {
+    icon: '/logo_mietta.jpg', // Caminho da sua logo na pasta public
+    shortcut: '/logo_mietta.jpg', // Opcional, para atalhos
+    apple: '/logo_mietta.jpg', // Opcional, para ícone no iPhone/iPad
+  },
 };
 
 export default function RootLayout({
