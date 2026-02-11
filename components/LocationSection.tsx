@@ -93,7 +93,6 @@ export default function LocationSection() {
                     <h4 className="font-bold mb-1 text-lg">Localização</h4>
                     <p className="text-sm opacity-80 mb-4">
                       Venha nos fazer uma visita.<br/>
-                      Ambiente climatizado e pet friendly.
                     </p>
                     <a 
                       href="https://www.google.com/maps/place/Mietta+Caf%C3%A9/@-26.1751987,-50.3943432,19z/data=!4m6!3m5!1s0x94e713439a51730f:0xaa44f5efedc92544!8m2!3d-26.175297!4d-50.3938281!16s%2Fg%2F11thng0n74?entry=ttu&g_ep=EgoyMDI2MDIwNC4wIKXMDSoASAFQAw%3D%3D" 

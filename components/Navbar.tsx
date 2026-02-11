@@ -72,13 +72,16 @@ export default function Navbar() {
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
 
-            <motion.button
+            <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="hidden sm:block bg-mietta-clay text-mietta-cream px-6 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-shadow"
+              className="hidden sm:block bg-mietta-clay text-mietta-cream px-6 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+              href="https://wa.me/5547999999999?text=Olá,%20vim%20pelo%20site!"
+              target="_blank" // Abre em nova aba
+              rel="noopener noreferrer" // Segurança
             >
               Peça no WhatsApp
-            </motion.button>
+            </motion.a>
           </div>
         </div>
       </motion.nav>

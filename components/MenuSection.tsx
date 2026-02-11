@@ -3,39 +3,34 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { products, Product } from '@/data/products';
-import { Plus, Info, Sparkles, Smile, Coffee, BatteryCharging } from 'lucide-react';
+import { Plus, Info, Sparkles, Sun, Coffee, BatteryCharging } from 'lucide-react';
 import { useCart } from "@/context/CartContext";
 
-const categories = [
-  { id: 'all', label: 'Todos' },
-  { id: 'cafes', label: 'Cafés' },
-  { id: 'doces', label: 'Doces' },
-  { id: 'salgados', label: 'Salgados' },
-];
-
+// Configuração dos "Humores"
 const moods = [
   { 
     id: 'tired', 
     label: 'Cansado(a)', 
     icon: <BatteryCharging size={20} />, 
     colorClass: 'text-blue-500', 
-    recommendId: 6, 
-    msg: "Nada que uma dose dupla de cafeína não resolva." 
+    recommendId: 6, // Cappuccino
+    msg: "Nada que uma dose de cafeína quentinha não resolva." 
   },
+  // MUDANÇA: 'Com Calor' recomenda o ID 5 (Iced Coffee)
   { 
-    id: 'happy', 
-    label: 'Feliz', 
-    icon: <Smile size={20} />, 
-    colorClass: 'text-yellow-500', 
-    recommendId: 2, 
-    msg: "Dia de celebrar! Nutella e morango é a pedida." 
+    id: 'hot', 
+    label: 'Com Calor', 
+    icon: <Sun size={20} />, 
+    colorClass: 'text-orange-500', 
+    recommendId: 5, // <--- Novo Café Gelado
+    msg: "Um Iced Coffee geladinho para refrescar as ideias!" 
   },
   { 
     id: 'hungry', 
     label: 'Faminto(a)', 
     icon: <Coffee size={20} />, 
-    colorClass: 'text-orange-500', 
-    recommendId: 4, 
+    colorClass: 'text-red-500', 
+    recommendId: 4, // Coxinha
     msg: "A Coxinha da Mietta sustenta a alma." 
   },
   { 
@@ -43,25 +38,21 @@ const moods = [
     label: 'Chique', 
     icon: <Sparkles size={20} />, 
     colorClass: 'text-purple-500', 
-    recommendId: 1, 
+    recommendId: 1, // Croissant Salgado
     msg: "Um croissant francês e postura elegante, por favor." 
   },
 ];
 
 export default function MenuSection() {
-  const [activeCategory, setActiveCategory] = useState('all');
   const [recommendation, setRecommendation] = useState<{ product: Product | undefined, msg: string } | null>(null);
   const { addToCart } = useCart();
-
-  const filteredProducts = activeCategory === 'all' 
-    ? products 
-    : products.filter(product => product.category === activeCategory);
 
   const handleMoodSelect = (moodId: string) => {
     const selectedMood = moods.find(m => m.id === moodId);
     if (selectedMood) {
       const product = products.find(p => p.id === selectedMood.recommendId); 
       setRecommendation({ product, msg: selectedMood.msg });
+      
       setTimeout(() => {
         const element = document.getElementById(`product-${selectedMood.recommendId}`);
         if(element) element.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -127,30 +118,9 @@ export default function MenuSection() {
           </AnimatePresence>
         </div>
 
-        {/* Filtros */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => { setActiveCategory(cat.id); setRecommendation(null); }}
-              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 border border-mietta-clay/20
-                ${activeCategory === cat.id 
-                  ? 'bg-mietta-clay text-mietta-cream shadow-lg scale-105' 
-                  : 'bg-transparent text-mietta-clay hover:bg-mietta-clay/5'
-                }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
         {/* Grid de Produtos */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          <AnimatePresence mode='popLayout'>
-            {filteredProducts.map((product) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product) => (
               <motion.div
                 layout
                 id={`product-${product.id}`} 
@@ -161,8 +131,6 @@ export default function MenuSection() {
                   scale: 1,
                   borderColor: recommendation?.product?.id === product.id ? '#D4A373' : 'rgba(0,0,0,0.05)'
                 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
                 className={`group relative bg-mietta-cream rounded-3xl overflow-hidden hover:shadow-xl transition-all border flex flex-col h-full
                   ${recommendation?.product?.id === product.id ? 'ring-2 ring-mietta-accent ring-offset-2 shadow-2xl scale-[1.02]' : 'border-mietta-clay/5'}
                 `}
@@ -187,10 +155,9 @@ export default function MenuSection() {
                   </p>
 
                   <button 
-                    // CORREÇÃO AQUI: Convertendo id para String e adicionando quantity
                     onClick={() => addToCart({ 
                       ...product, 
-                      id: product.id.toString(), // Converte número para texto
+                      id: product.id.toString(), // Converte número para string
                       quantity: 1 
                     })}
                     className="w-full py-3 bg-white border border-mietta-clay/20 text-mietta-clay rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-mietta-clay hover:text-mietta-cream transition-colors group-hover:border-mietta-clay mt-auto"
@@ -201,8 +168,7 @@ export default function MenuSection() {
                 </div>
               </motion.div>
             ))}
-          </AnimatePresence>
-        </motion.div>
+        </div>
 
         {/* Disclaimer */}
         <div className="text-center mt-12">

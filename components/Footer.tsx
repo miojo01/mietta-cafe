@@ -77,12 +77,20 @@ export default function Footer() {
         </div>
 
         {/* Rodapé Final */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs opacity-40">
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs opacity-60">
            <p>© {currentYear} Mietta Café. Todos os direitos reservados.</p>
-           <div className="flex items-center gap-1">
-             <span>Feito com</span>
-             <Heart size={10} className="fill-current text-red-500" />
-             <span>em Santa Catarina.</span>
+           
+           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+
+             <span className="hidden md:block text-white/20">|</span>
+             
+             <a 
+               href="https://seusite.com.br" // Coloque seu LinkedIn ou Portfolio aqui
+               target="_blank" 
+               className="hover:text-white transition-colors flex items-center gap-1"
+             >
+               Desenvolvido por <strong className="font-bold"><u>Leonardo Batschauer</u></strong>
+             </a>
            </div>
         </div>
 
